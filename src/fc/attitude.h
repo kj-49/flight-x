@@ -3,7 +3,14 @@
 
 #include "gyro.h"
 
-void attitude_update(gyro_state_t gyro, float dt);
-float attitude_get_pitch(void);
+typedef struct {
+    float roll;   // Roll angle (X-axis rotation)
+    float pitch;  // Pitch angle (Y-axis rotation)
+    float yaw;    // Yaw angle (Z-axis rotation)
+} attitude_state_t;
+
+void attitude_init(void);
+void attitude_update();
+attitude_state_t attitude_get_state(void);
 
 #endif
