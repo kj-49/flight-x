@@ -5,8 +5,6 @@
 #include <unistd.h>
 
 static void (*tasks[])(void) = {
-    task_gyro,
-    task_loop
 };
 
 #define NUM_TASKS (sizeof(tasks) / sizeof(tasks[0]))

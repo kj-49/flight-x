@@ -1,17 +1,21 @@
 #include <stdio.h>
 #include "scheduler/scheduler.h"
 #include "fc/tasks.h"
+#include <stdbool.h>
 
-void task_gyro(void) {
-    printf("GYRO task running\n");
-}
+void init(void);
 
-void task_loop(void) {
-    printf("MAIN LOOP running\n");
-}
+int main(void)
+{
+    init();
 
-int main(void) {
-    scheduler_init();
-    scheduler_run();
+    while(true) {
+        scheduler_run();
+    }
     return 0;
+}
+
+void init(void)
+{
+    scheduler_init();
 }
