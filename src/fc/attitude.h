@@ -1,9 +1,9 @@
 #ifndef ATTITUDE_H
 #define ATTITUDE_H
 
-#include "../../hal/imu.h"
+#include "gyro.h"
 
-void attitude_update(gyro_data_t gyro, float dt);
+void attitude_update(gyro_state_t gyro, float dt);
 float attitude_get_pitch(void);
 
 #endif

@@ -4,13 +4,11 @@
 #include <stdbool.h>
 #include "util/debug.h"
 
-
-
 void init(void);
 
 int main(void)
 {
-    printf("Starting \n");
+    d_printf("Starting \n");
     init();
 
     scheduler_run();

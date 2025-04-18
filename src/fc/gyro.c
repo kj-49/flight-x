@@ -1,5 +1,6 @@
 #include "gyro.h"
 #include <stdio.h>
+#include "util/debug.h"
 
 static gyro_state_t gyro_state = {0, 0, 0};
 
@@ -12,5 +13,5 @@ void gyro_update(void)
     gyro_state.y = imu_data.y;
     gyro_state.z = imu_data.z;
 
-    printf("Gyro data: x=%f, y=%f, z=%f\n", gyro_state.x, gyro_state.y, gyro_state.z);
+    d_printf("Gyro data: x=%f, y=%f, z=%f\n", gyro_state.x, gyro_state.y, gyro_state.z);
 }

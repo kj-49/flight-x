@@ -1,6 +1,6 @@
 # Compiler and flags
 CC = gcc
-CFLAGS = -Wall -Wextra -std=c99 \
+CFLAGS = -Wall -Wextra -std=c99 -DDEBUG \
     -I./src \
     -I./src/scheduler \
     -I./src/fc \
@@ -20,7 +20,7 @@ OBJ = $(SRC:%.c=build/%.o)
 OUT = build/flightx
 
 # Default rule
-all: $(OUT)
+all: clean $(OUT)
 
 # Link all object files into final binary
 $(OUT): $(OBJ)
