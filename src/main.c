@@ -2,17 +2,19 @@
 #include "scheduler/scheduler.h"
 #include "fc/tasks.h"
 #include <stdbool.h>
+#include "util/debug.h"
+
+
 
 void init(void);
 
 int main(void)
 {
-    init();
+    printf("Starting \n");
+    //fflush(stdout);
+     init();
 
-    while(true) {
-        scheduler_run();
-    }
-    return 0;
+    // scheduler_run();
 }
 
 void init(void)

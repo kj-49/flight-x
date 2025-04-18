@@ -1,10 +1,21 @@
 # Compiler and flags
 CC = gcc
-CFLAGS = -Wall -Wextra -std=c99 -I./src -I./src/scheduler -I./src/fc
+CFLAGS = -Wall -Wextra -std=c99 \
+    -I./src \
+    -I./src/scheduler \
+    -I./src/fc \
+    -I./hal
 
 # Source and build config
-SRC = src/main.c src/scheduler/scheduler.c src/fc/tasks.c
-OBJ = $(SRC:src/%.c=build/%.o)
+SRC = \
+    src/main.c \
+    src/scheduler/scheduler.c \
+    src/fc/tasks.c \
+    src/fc/attitude.c \
+    hal/sim/timing_sim.c \
+	hal/sim/imu_sim.c
+
+OBJ = $(SRC:%.c=build/%.o)
 OUT = build/flightx
 
 # Default rule
@@ -16,7 +27,7 @@ $(OUT): $(OBJ)
 	$(CC) $(CFLAGS) -o $@ $^
 
 # Compile each source file into corresponding build/ object file
-build/%.o: src/%.c
+build/%.o: %.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
