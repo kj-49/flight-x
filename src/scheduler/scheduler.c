@@ -1,30 +1,42 @@
 #include "scheduler.h"
 #include "../../hal/timing.h"
+#include "gyro.h"
+#include <stdio.h>
+#include <stdbool.h>
 
-#define MAX_TASKS 10
+static task_t tasks[TASK_COUNT];
+static uint64_t current_micros = 0;
 
-static scheduled_task_t tasks[MAX_TASKS];
-static int num_tasks = 0;
+void scheduler_init(void) {
+    for (int i = 0; i < TASK_COUNT; i++) {
+        tasks[i].task = 0;
+        tasks[i].period_us = 0;
+        tasks[i].last_run = 0;
+    }
+    current_micros = 0;
 
-void scheduler_add_task(task_fn fn, uint32_t interval_us)
-{
-    if (num_tasks >= MAX_TASKS) return;
-    tasks[num_tasks++] = (scheduled_task_t){ fn, interval_us, 0 };
+    scheduler_set_task(TASK_GYRO, gyro_update, 1000000);
 }
 
-void scheduler_init(void) {}
+void scheduler_set_task(task_id_t id, task_func_t task, uint64_t period_us) {
+    printf("Setting task %d with period %d ms\n", id, period_us);
+    if (id < TASK_COUNT) {
+        tasks[id].task = task;
+        tasks[id].period_us = period_us;
+        tasks[id].last_run = 0;
+    }
+}
 
-void scheduler_run(void)
-{
-    while (1) {
-        uint64_t now = timing_micros();
-        for (int i = 0; i < num_tasks; i++) {
-            if (now - tasks[i].last_run_us >= tasks[i].interval_us) {
-                float dt = (now - tasks[i].last_run_us) / 1000000.0f;
-                tasks[i].last_run_us = now;
-                tasks[i].fn(dt);
+void scheduler_run(void) {
+    printf("Running scheduler\n");
+    while (true) {
+        current_micros = timing_micros();
+        for (int i = 0; i < TASK_COUNT; i++) {
+            if (tasks[i].task && (current_micros - tasks[i].last_run) >= tasks[i].period_us) {
+                tasks[i].last_run = current_micros;
+                printf("Running task %d\n", i);
+                tasks[i].task();
             }
         }
-        usleep(100);
     }
 }

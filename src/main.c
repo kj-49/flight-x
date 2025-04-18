@@ -11,10 +11,9 @@ void init(void);
 int main(void)
 {
     printf("Starting \n");
-    //fflush(stdout);
-     init();
+    init();
 
-    // scheduler_run();
+    scheduler_run();
 }
 
 void init(void)

@@ -12,6 +12,7 @@ SRC = \
     src/scheduler/scheduler.c \
     src/fc/tasks.c \
     src/fc/attitude.c \
+    src/fc/gyro.c \
     hal/sim/timing_sim.c \
 	hal/sim/imu_sim.c
 

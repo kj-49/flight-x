@@ -1,18 +1,19 @@
 #ifndef SCHEDULER_H
 #define SCHEDULER_H
 
+#include "tasks.h"
 #include <stdint.h>
 
-typedef void (*task_fn)(float dt);
+typedef void (*task_func_t)(void);
 
 typedef struct {
-    task_fn fn;
-    uint32_t interval_us;   // how often to run, in microseconds
-    uint64_t last_run_us;
-} scheduled_task_t;
+    task_func_t task;
+    uint64_t period_us;
+    uint64_t last_run;
+} task_t;
 
 void scheduler_init(void);
-void scheduler_add_task(task_fn fn, uint32_t interval_us);
+void scheduler_set_task(task_id_t id, task_func_t task, uint64_t period_ms);
 void scheduler_run(void);
 
 #endif
