@@ -1,7 +1,9 @@
 #ifndef TASKS_H
 #define TASKS_H
 
-
-void task_loop(void);
+typedef enum {
+    TASK_GYRO,
+    TASK_COUNT  // Always keep this last
+} task_id_t;
 
 #endif
