@@ -10,7 +10,7 @@ typedef struct {
 } attitude_state_t;
 
 void attitude_init(void);
-void attitude_update();
+void attitude_update(void);
 attitude_state_t attitude_get_state(void);
 
 #endif

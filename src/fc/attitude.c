@@ -7,7 +7,7 @@ static attitude_state_t attitude_state = {0, 0, 0};
 
 void attitude_init(void) {}
 
-void attitude_update()
+void attitude_update(void)
 {
     gyro_state_t gyro = gyro_get_state();
 
