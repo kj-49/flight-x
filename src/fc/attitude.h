@@ -2,11 +2,10 @@
 #define ATTITUDE_H
 
 #include "gyro.h"
+#include "common/structures.h"
 
 typedef struct {
-    float roll;   // Roll angle (X-axis rotation)
-    float pitch;  // Pitch angle (Y-axis rotation)
-    float yaw;    // Yaw angle (Z-axis rotation)
+    flight_variables_t attitude;
 } attitude_state_t;
 
 void attitude_init(void);

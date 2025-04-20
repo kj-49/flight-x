@@ -13,13 +13,13 @@ void gyro_update(void)
     uint64_t now = timing_micros();
     imu_data_t imu_data = imu_read();
 
-    gyro_state.x = imu_data.x;
-    gyro_state.y = imu_data.y;
-    gyro_state.z = imu_data.z;
+    gyro_state.angular_rate.roll_dps = imu_data.x;
+    gyro_state.angular_rate.pitch_dps = imu_data.y;
+    gyro_state.angular_rate.yaw_dps = imu_data.z;
     gyro_state.dt = now - last_update;
 
     last_update = now;
-    d_printf("Gyro data: x=%f, y=%f, z=%f\n", gyro_state.x, gyro_state.y, gyro_state.z);
+    d_printf("Gyro data: x=%f, y=%f, z=%f\n", gyro_state.angular_rate.roll_dps, gyro_state.angular_rate.pitch_dps, gyro_state.angular_rate.yaw_dps);
 }
 
 gyro_state_t gyro_get_state(void)

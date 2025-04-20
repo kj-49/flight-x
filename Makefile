@@ -13,8 +13,12 @@ SRC = \
     src/fc/tasks.c \
     src/fc/attitude.c \
     src/fc/gyro.c \
+    src/fc/mixer.c \
+    src/fc/pid.c \
+    src/fc/ctrl.c \
     hal/sim/timing_sim.c \
-	hal/sim/imu_sim.c
+	hal/sim/imu_sim.c \
+    hal/sim/motor_sim.c \
 
 OBJ = $(SRC:%.c=build/%.o)
 OUT = build/flightx
