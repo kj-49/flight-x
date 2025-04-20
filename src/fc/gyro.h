@@ -5,7 +5,11 @@
 #include <stdint.h>
 
 typedef struct {
-    float x, y, z;
+    float roll_dps, pitch_dps, yaw_dps;
+} angular_rate_t;
+
+typedef struct {
+    angular_rate_t angular_rate;
     uint16_t dt;
 } gyro_state_t;
 
