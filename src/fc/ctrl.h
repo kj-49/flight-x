@@ -12,6 +12,7 @@ typedef struct {
     pid_t yaw_pid;
 } controls_t;
 
+void ctrl_init(void);
 controls_t ctrl_get_state(void);
 
 #endif

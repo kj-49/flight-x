@@ -18,8 +18,13 @@ void scheduler_init(void) {
     }
     current_micros = 0;
 
+    gyro_init();
     scheduler_set_task(TASK_GYRO, gyro_update, 1000000);
+
+    attitude_init();
     scheduler_set_task(TASK_ATTITUDE, attitude_update, 1000000);
+
+    mixer_init();
     scheduler_set_task(TASK_MIX, mixer_update, 1000000);
 }
 

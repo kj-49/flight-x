@@ -17,4 +17,6 @@ typedef struct {
 void pid_init(pid_t* pid, float kp, float ki, float kd, float dt);
 float pid_update(pid_t* pid, float setpoint, float measurement);
 
+pid_t pid_get_default();
+
 #endif

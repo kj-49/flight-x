@@ -32,3 +32,11 @@ float pid_update(pid_t* pid, float setpoint, float measurement) {
 
     return output;
 }
+
+pid_t pid_get_default()
+{
+    pid_t new;
+    pid_init(&new, 1, 1, 1, 1);
+
+    return new;
+}
