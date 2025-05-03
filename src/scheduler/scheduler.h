@@ -1,7 +1,7 @@
 #ifndef SCHEDULER_H
 #define SCHEDULER_H
 
-#include "tasks.h"
+#include "../fc/tasks.h"
 #include <stdint.h>
 
 typedef void (*task_func_t)(void);
